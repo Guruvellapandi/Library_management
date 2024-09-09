@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Librarians</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .navbar {
+            background-color: #303f9f;
+            padding: 10px;
+            overflow: hidden;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #3f51b5;
+        }
+        .container {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .btn {
+            padding: 5px 10px;
+            background-color: #3f51b5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #303f9f;
+        }
+        .add-btn {
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Manage Librarians</h1>
+</div>
+
+<div class="navbar">
+    <a href="{% url 'manage_users' %}">Manage Users</a>
+    <a href="{% url 'manage_books' %}">Manage Books</a>
+    <a href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
+    <div class="logout-form">
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">Logout</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <a href="{% url 'add_librarian' %}" class="btn add-btn">Add New Librarian</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>User</th>
+            <th>Contact Number</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for librarian in librarians %}
+            <tr>
+                <td>{{ librarian.employee_id }}</td>
+                <td>{{ librarian.user.username }}</td>
+                <td>{{ librarian.contact_number }}</td>
+                <td>
+                    <a href="{% url 'edit_librarian' librarian.id %}" class="btn">Edit</a>
+                    <a href="{% url 'delete_librarian' librarian.id %}" class="btn">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

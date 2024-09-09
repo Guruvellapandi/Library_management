@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group p {
+            color: #555;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #c82333;
+        }
+        .form-group a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Book</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <p>Are you sure you want to delete "{{ book.title }}"?</p>
+                <button type="submit">Delete</button>
+            </div>
+        </form>
+        <div class="form-group">
+            <a href="{% url 'manage_books' %}">Back to Book List</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .book-list {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .book-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .book-item:last-child {
+            border-bottom: none;
+        }
+        .book-item h2 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .book-item p {
+            margin: 5px 0;
+        }
+        .book-item a {
+            text-decoration: none;
+            color: #007bff;
+            margin-right: 10px;
+        }
+        .book-item a:hover {
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 5px;
+            font-size: 1em;
+            text-align: center;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Member Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="book-list">
+            <h2>Available Books</h2>
+            <ul>
+                {% for book in books %}
+                <li class="book-item">
+                    <h2>{{ book.title }}</h2>
+                    <p><strong>Author:</strong> {{ book.author }}</p>
+                    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+                    <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
+                    <p><strong>Available Copies:</strong> {{ book.available_copies }}</p>
+                    <p><strong>Rent Price:</strong> ${{ book.rent_price }} | <strong>Buy Price:</strong> ${{ book.purchase_price }}</p>
+                    <a href="{% url 'purchase_book' book.id 'rent' %}" class="button">Rent this book</a>
+                    <a href="{% url 'purchase_book' book.id 'buy' %}" class="button">Buy this book</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

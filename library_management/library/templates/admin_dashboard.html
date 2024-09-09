@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #3f51b5;
+            color: white;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #303f9f;
+        }
+        .logout-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Admin Dashboard</h1>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h2>Manage Users</h2>
+        <a href="{% url 'manage_users' %}" class="btn">Go to Users</a>
+    </div>
+    <div class="card">
+        <h2>Manage Books</h2>
+        <a href="{% url 'manage_books' %}" class="btn">Go to Books</a>
+    </div>
+    <!-- Logout Button -->
+    <div class="logout-form">
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">Logout</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

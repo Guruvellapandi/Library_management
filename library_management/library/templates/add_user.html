@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add User</h2>
+        <form method="post">
+            {% csrf_token %}
+            <!-- Rendering the form fields without help text -->
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+            <div class="form-group">
+                {{ form.is_librarian.label_tag }}
+                {{ form.is_librarian }}
+            </div>
+            <div class="form-group">
+                {{ form.is_admin.label_tag }}
+                {{ form.is_admin }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+            <div class="form-group">
+                <button type="submit">Add User</button>
+            </div>
+        </form>
+        <a href="{% url 'manage_users' %}" class="back-link">Back to User List</a>
+    </div>
+</body>
+</html>
